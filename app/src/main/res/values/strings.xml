@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">PokeTracker</string>
+
+    <string name="Header">Poke - Tracker</string>
+    <string name="SubHeader">Register new catch</string>
+
+
+
+    <string name="NatNum">National Number</string>
+
+    <string name="Name">Name</string>
+
+    <string name="Species">Species</string>
+
+    <string name="Gender">Gender</string>
+    <string name="Gender1">Male</string>
+    <string name="Gender2">Female</string>
+    <string name="Gender3">Unkn</string>
+
+    <string name="Height">Height</string>
+
+    <string name="Weight">Weight</string>
+
+    <string name="Level">Level</string>
+
+    <string name="Base">Base Stats</string>
+
+    <string name="HP">HP</string>
+
+    <string name="Attack">Attack</string>
+
+    <string name="Defense">Defense</string>
+
+
+    <string name="Reset">Reset</string>
+
+    <string name="Save">Save</string>
+
+
+
+</resources>
