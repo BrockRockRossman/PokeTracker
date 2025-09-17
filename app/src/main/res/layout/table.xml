@@ -63,12 +63,13 @@
                 android:layout_width="101dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/natNumD" />
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_width="wrap_content"
+            android:layout_height="200dp">
 
             <TextView
                 android:id="@+id/Name"
@@ -78,16 +79,16 @@
 
             <EditText
                 android:id="@+id/NameA"
-                android:layout_width="69dp"
+                android:layout_width="145dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name" />
+                android:text="@string/nameD" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/Species"
@@ -97,11 +98,11 @@
 
             <EditText
                 android:id="@+id/SpeciesA"
-                android:layout_width="49dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name" />
+                android:text="@string/speciesD" />
 
         </TableRow>
 
@@ -150,7 +151,8 @@
                 android:layout_width="97dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:text="@string/heightD" />
         </TableRow>
 
         <TableRow
@@ -168,7 +170,8 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:text="@string/weightD" />
         </TableRow>
 
         <TableRow
@@ -215,7 +218,8 @@
                 android:layout_width="76dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/hpD" />
         </TableRow>
 
         <TableRow
@@ -233,7 +237,8 @@
                 android:layout_width="52dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/attackD" />
 
         </TableRow>
 
@@ -252,13 +257,14 @@
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/defenseD" />
 
         </TableRow>
 
         <TableRow
-            android:layout_width="367dp"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/Reset"

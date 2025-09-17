@@ -49,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/natNumD" />
 
         </LinearLayout>
 
@@ -72,7 +73,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name" />
+                android:text="@string/nameD" />
         </LinearLayout>
 
         <LinearLayout
@@ -94,7 +95,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name" />
+                android:text="@string/speciesD" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,7 +149,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:text="@string/heightD" />
         </LinearLayout>
 
         <LinearLayout
@@ -169,7 +171,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:text="@string/weightD" />
         </LinearLayout>
 
         <LinearLayout
@@ -217,7 +220,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/hpD" />
 
         </LinearLayout>
 
@@ -239,7 +243,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/attackD" />
         </LinearLayout>
 
         <LinearLayout
@@ -260,7 +265,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/defenseD" />
         </LinearLayout>
 
         <LinearLayout
