@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/SubHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="156dp"
@@ -40,6 +40,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="104dp"
             android:text="@string/NatNum"
+            android:textColor="#818181"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +62,7 @@
             android:layout_marginEnd="35dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Name"
+            android:text="@string/nameD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/NatNum" />
 
@@ -83,7 +84,7 @@
             android:layout_marginEnd="34dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Name"
+            android:text="@string/speciesD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/NameA" />
 
@@ -199,17 +200,17 @@
             app:layout_constraintTop_toBottomOf="@+id/Attack" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/Gen1"
             android:layout_width="76dp"
             android:layout_height="39dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
             android:text="@string/Gender1"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+            app:layout_constraintEnd_toStartOf="@+id/Gen2"
             app:layout_constraintTop_toBottomOf="@+id/SpeciesA" />
 
         <CheckBox
-            android:id="@+id/checkBox3"
+            android:id="@+id/Gen3"
             android:layout_width="79dp"
             android:layout_height="38dp"
             android:layout_marginTop="16dp"
@@ -219,13 +220,13 @@
             app:layout_constraintTop_toBottomOf="@+id/SpeciesA" />
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/Gen2"
             android:layout_width="87dp"
             android:layout_height="39dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/Gender2"
-            app:layout_constraintEnd_toStartOf="@+id/checkBox3"
+            app:layout_constraintEnd_toStartOf="@+id/Gen3"
             app:layout_constraintTop_toBottomOf="@+id/SpeciesA" />
 
         <EditText
@@ -236,8 +237,9 @@
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:inputType="numberDecimal"
+            android:text="@string/heightD"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            app:layout_constraintTop_toBottomOf="@+id/Gen1" />
 
         <EditText
             android:id="@+id/WeightA"
@@ -247,6 +249,7 @@
             android:layout_marginEnd="31dp"
             android:ems="10"
             android:inputType="numberDecimal"
+            android:text="@string/weightD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/HeightA" />
 
@@ -258,8 +261,9 @@
             android:layout_marginEnd="33dp"
             android:ems="10"
             android:inputType="number"
+            android:text="@string/natNumD"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/SubHeader" />
 
         <EditText
             android:id="@+id/HPA"
@@ -269,6 +273,7 @@
             android:layout_marginEnd="34dp"
             android:ems="10"
             android:inputType="number"
+            android:text="@string/hpD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/levelSpinner" />
 
@@ -280,6 +285,7 @@
             android:layout_marginEnd="33dp"
             android:ems="10"
             android:inputType="number"
+            android:text="@string/attackD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/HPA" />
 
@@ -291,6 +297,7 @@
             android:layout_marginEnd="30dp"
             android:ems="10"
             android:inputType="number"
+            android:text="@string/defenseD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/AttackA" />
 

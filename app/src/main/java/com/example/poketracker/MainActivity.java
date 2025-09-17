@@ -3,11 +3,13 @@ package com.example.poketracker;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView level;
     private Spinner levelS;
 
-    LinkedList<Integer> levels = new LinkedList<>();
+    LinkedList<String> levels = new LinkedList<>();
 
     private TextView base;
 
@@ -62,32 +64,114 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener resetListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            natNumA.getText().clear();
-            nameA.getText().clear();
-            speciesA.getText().clear();
-            heightA.getText().clear();
-            weightA.getText().clear();
-            hpA.getText().clear();
-            attackA.getText().clear();
-            defenseA.getText().clear();
+
+            reset();
 
             //Log.i("resetTest","button Clicked");
         }
     };
 
+    public void reset()
+    {
+        // Set to default values
+        natNumA.setText("896");
+        nameA.setText("Glastrier");
+        speciesA.setText("Wild Horse Pokemon");
+
+        gen1.setChecked(false);
+        gen2.setChecked(false);
+        gen3.setChecked(false);
+
+
+
+        heightA.setText("2.2");
+        weightA.setText("800.0");
+
+        // figure out how to get a unselected level
+        levelS.setSelection(0);
+        hpA.setText("0");
+        attackA.setText("0");
+        defenseA.setText("0");
+
+        // Set to normal color
+        natNum.setTextColor(getResources().getColor(R.color.light_grey));
+        natNumA.setTextColor(getResources().getColor(R.color.black));
+
+        name.setTextColor(getResources().getColor(R.color.light_grey));
+        nameA.setTextColor(getResources().getColor(R.color.black));
+
+        species.setTextColor(getResources().getColor(R.color.light_grey));
+        speciesA.setTextColor(getResources().getColor(R.color.black));
+
+        height.setTextColor(getResources().getColor(R.color.light_grey));
+        heightA.setTextColor(getResources().getColor(R.color.black));
+
+        weight.setTextColor(getResources().getColor(R.color.light_grey));
+        weightA.setTextColor(getResources().getColor(R.color.black));
+
+        hp.setTextColor(getResources().getColor(R.color.light_grey));
+        hpA.setTextColor(getResources().getColor(R.color.black));
+
+        attack.setTextColor(getResources().getColor(R.color.light_grey));
+        attackA.setTextColor(getResources().getColor(R.color.black));
+
+        defense.setTextColor(getResources().getColor(R.color.light_grey));
+        defenseA.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    // Calls each of the checks and if one is false, will run toast that notifies error
+    // if all pass, runs toast saying that info is stored
     View.OnClickListener saveListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            checkNatNum();
+            checkAttack();
+            checkDefense();
+            checkHeight();
+            checkHP();
+            checkWeight();
+            if(!checkAttack() ||
+            !checkDefense())
+            {
+                Toast.makeText(MainActivity.this, "There was an error in your submission. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                // run success toast
+                Toast.makeText(MainActivity.this, "Pokemon registered!", Toast.LENGTH_SHORT).show();
+                reset();
+            }
 
         }
     };
 
+    // OnClickListener for checkBoxes, when one is check the others are not. uncheck one when new is selected
+    View.OnClickListener gen1Listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            gen2.setChecked(false);
+            gen3.setChecked(false);
+        }
+    };
+    View.OnClickListener gen2Listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            gen1.setChecked(false);
+            gen3.setChecked(false);
+        }
+    };
+    View.OnClickListener gen3Listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            gen2.setChecked(false);
+            gen1.setChecked(false);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.constraint);
+        setContentView(R.layout.linear);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -97,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i = 1; i <= 50; i++)
         {
-            levels.add(i);
+            levels.add("" + i);
         }
 
 
@@ -111,6 +195,15 @@ public class MainActivity extends AppCompatActivity {
        species = findViewById(R.id.Species);
        speciesA = findViewById(R.id.SpeciesA);
 
+       gen1 = findViewById(R.id.Gen1);
+       gen1.setOnClickListener(gen1Listener);
+
+       gen2 = findViewById(R.id.Gen2);
+       gen2.setOnClickListener(gen2Listener);
+
+       gen3 = findViewById(R.id.Gen3);
+       gen3.setOnClickListener(gen3Listener);
+
        height = findViewById(R.id.Height);
        heightA = findViewById(R.id.HeightA);
 
@@ -118,8 +211,12 @@ public class MainActivity extends AppCompatActivity {
        weightA = findViewById(R.id.WeightA);
 
        level = findViewById(R.id.Level);
-       levelS = findViewById(R.id.levelSpinner);
+       levelS = (Spinner) findViewById(R.id.levelSpinner);
 
+
+       ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, levels);
+       levelS.setAdapter(adapter);
 
 
        hp = findViewById(R.id.HP);
@@ -144,5 +241,115 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    // Series of if statements to check if each field is filled out properly, returns boolean
+    public boolean checkNatNum(){
+        if(natNumA.getText().toString().isEmpty())
+        {
+            natNum.setTextColor(getResources().getColor(R.color.red));
+            natNumA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((Integer.parseInt(natNumA.getText().toString()) > 1010 || Integer.parseInt(natNumA.getText().toString()) < 0)){
+            // Sets text to red if error
+            natNum.setTextColor(getResources().getColor(R.color.red));
+            natNumA.setTextColor(getResources().getColor(R.color.red));
+
+            return false;
+        }
+        return true;
+    }
+    public void checkName(){
+
+    }
+    public void checkSpecies(){
+
+    }
+    public void checkGender(){
+
+    }
+    public boolean checkHeight(){
+        if(heightA.getText().toString().isEmpty())
+        {
+            height.setTextColor(getResources().getColor(R.color.red));
+            heightA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((Double.parseDouble(attackA.getText().toString()) > 169.99 || Double.parseDouble(attackA.getText().toString()) < 0.2)){
+            // Sets text to red if error
+            height.setTextColor(getResources().getColor(R.color.red));
+            heightA.setTextColor(getResources().getColor(R.color.red));
+
+            return false;
+        }
+        return true;
+    }
+    public boolean checkWeight(){
+        if(weightA.getText().toString().isEmpty())
+        {
+            weight.setTextColor(getResources().getColor(R.color.red));
+            weightA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((Double.parseDouble(weightA.getText().toString()) > 992.7 || Double.parseDouble(weightA.getText().toString()) < 0.1)){
+            // Sets text to red if error
+            weight.setTextColor(getResources().getColor(R.color.red));
+            weightA.setTextColor(getResources().getColor(R.color.red));
+
+            return false;
+        }
+        return true;
+    }
+    public boolean checkHP(){
+        if(hpA.getText().toString().isEmpty())
+        {
+            hp.setTextColor(getResources().getColor(R.color.red));
+            hpA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((Integer.parseInt(hpA.getText().toString()) > 362 || Integer.parseInt(hpA.getText().toString()) < 1)){
+            // Sets text to red if error
+            hp.setTextColor(getResources().getColor(R.color.red));
+            hpA.setTextColor(getResources().getColor(R.color.red));
+
+            return false;
+        }
+        return true;
+    }
+    public boolean checkAttack(){
+        if(attackA.getText().toString().isEmpty())
+        {
+            attack.setTextColor(getResources().getColor(R.color.red));
+            attackA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((Integer.parseInt(attackA.getText().toString()) > 526 || Integer.parseInt(attackA.getText().toString()) < 0)){
+            // Sets text to red if error
+            attack.setTextColor(getResources().getColor(R.color.red));
+            attackA.setTextColor(getResources().getColor(R.color.red));
+
+            return false;
+        }
+
+        return true;
+    }
+    public boolean checkDefense(){
+        if(defenseA.getText().toString().isEmpty())
+        {
+            defense.setTextColor(getResources().getColor(R.color.red));
+            defenseA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((Integer.parseInt(defenseA.getText().toString()) > 614 || Integer.parseInt(defenseA.getText().toString()) < 10)){
+            // Sets text to red if error
+            defense.setTextColor(getResources().getColor(R.color.red));
+            defenseA.setTextColor(getResources().getColor(R.color.red));
+
+            return false;
+        }
+
+        return true;
     }
 }

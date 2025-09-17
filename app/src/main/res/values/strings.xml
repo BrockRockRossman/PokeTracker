@@ -36,6 +36,16 @@
 
     <string name="Save">Save</string>
 
+    <string name="natNumD">896</string>
+    <string name="nameD">Glastrier</string>
+    <string name="speciesD">Wild Horse Pokemon</string>
+    <string name="heightD">2.2</string>
+    <string name="weightD">800</string>
+    <string name="hpD">0</string>
+    <string name="attackD">0</string>
+    <string name="defenseD">0</string>
+
+
 
 
 </resources>
