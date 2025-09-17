@@ -132,10 +132,11 @@ public class MainActivity extends AppCompatActivity {
             checkWeight();
             checkName();
             checkSpecies();
+            //checkGender();
             if(!checkAttack() ||
             !checkDefense() || !checkNatNum() || !checkAttack() ||
                     !checkDefense() || !checkHeight() || !checkHP() ||
-                    !checkWeight() )
+                    !checkWeight())
             {
                 Toast.makeText(MainActivity.this, "There was an error in your submission. Please try again.", Toast.LENGTH_SHORT).show();
             }
@@ -288,21 +289,16 @@ public class MainActivity extends AppCompatActivity {
             speciesA.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
-        if((speciesA.length() > 12 || speciesA.length() < 3)){
-            // Sets text to red if error
-            species.setTextColor(getResources().getColor(R.color.red));
-            speciesA.setTextColor(getResources().getColor(R.color.red));
 
-            return false;
-        }
         return true;
     }
     public boolean checkGender(){
-        if(!gen1.isChecked() && !gen2.isChecked() && !gen3.isChecked())
+        if(gen1.isChecked())
         {
             gender.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
+
 
         return true;
     }
@@ -313,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
             heightA.setTextColor(getResources().getColor(R.color.red));
             return false;
         }
-        if((Double.parseDouble(attackA.getText().toString()) > 169.99 || Double.parseDouble(attackA.getText().toString()) < 0.2)){
+        if((Double.parseDouble(heightA.getText().toString()) > 169.99 || Double.parseDouble(heightA.getText().toString()) < 0.2)){
             // Sets text to red if error
             height.setTextColor(getResources().getColor(R.color.red));
             heightA.setTextColor(getResources().getColor(R.color.red));
