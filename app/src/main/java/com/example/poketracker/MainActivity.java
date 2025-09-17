@@ -130,8 +130,12 @@ public class MainActivity extends AppCompatActivity {
             checkHeight();
             checkHP();
             checkWeight();
+            checkName();
+            checkSpecies();
             if(!checkAttack() ||
-            !checkDefense())
+            !checkDefense() || !checkNatNum() || !checkAttack() ||
+                    !checkDefense() || !checkHeight() || !checkHP() ||
+                    !checkWeight() )
             {
                 Toast.makeText(MainActivity.this, "There was an error in your submission. Please try again.", Toast.LENGTH_SHORT).show();
             }
@@ -261,14 +265,46 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-    public void checkName(){
+    public boolean checkName(){
+        if(nameA.getText().toString().isEmpty())
+        {
+            name.setTextColor(getResources().getColor(R.color.red));
+            nameA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((nameA.length() > 12 || nameA.length() < 3)){
+            // Sets text to red if error
+            name.setTextColor(getResources().getColor(R.color.red));
+            nameA.setTextColor(getResources().getColor(R.color.red));
 
+            return false;
+        }
+        return true;
     }
-    public void checkSpecies(){
+    public boolean checkSpecies(){
+        if(speciesA.getText().toString().isEmpty())
+        {
+            species.setTextColor(getResources().getColor(R.color.red));
+            speciesA.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
+        if((speciesA.length() > 12 || speciesA.length() < 3)){
+            // Sets text to red if error
+            species.setTextColor(getResources().getColor(R.color.red));
+            speciesA.setTextColor(getResources().getColor(R.color.red));
 
+            return false;
+        }
+        return true;
     }
-    public void checkGender(){
+    public boolean checkGender(){
+        if(!gen1.isChecked() && !gen2.isChecked() && !gen3.isChecked())
+        {
+            gender.setTextColor(getResources().getColor(R.color.red));
+            return false;
+        }
 
+        return true;
     }
     public boolean checkHeight(){
         if(heightA.getText().toString().isEmpty())

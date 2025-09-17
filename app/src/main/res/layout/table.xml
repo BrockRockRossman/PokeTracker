@@ -21,9 +21,11 @@
 
             <TextView
                 android:id="@+id/Header"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
-                android:text="@string/Header" />
+                android:text="@string/Header"
+                android:textColor="#050505"
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="43dp"
@@ -41,7 +43,7 @@
 
             <TextView
                 android:id="@+id/SubHeader"
-                android:layout_width="106dp"
+                android:layout_width="33dp"
                 android:layout_height="wrap_content"
                 android:text="@string/SubHeader" />
         </TableRow>
@@ -58,7 +60,7 @@
 
             <EditText
                 android:id="@+id/NatNum"
-                android:layout_width="78dp"
+                android:layout_width="101dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
@@ -76,7 +78,7 @@
 
             <EditText
                 android:id="@+id/NameA"
-                android:layout_width="82dp"
+                android:layout_width="69dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
@@ -95,7 +97,7 @@
 
             <EditText
                 android:id="@+id/SpeciesA"
-                android:layout_width="85dp"
+                android:layout_width="49dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
@@ -115,21 +117,21 @@
 
             <CheckBox
                 android:id="@+id/Gen1"
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
                 android:layout_height="match_parent"
-                android:text="CheckBox" />
+                android:text="@string/Gender1" />
 
             <CheckBox
                 android:id="@+id/Gen2"
                 android:layout_width="61dp"
                 android:layout_height="match_parent"
-                android:text="CheckBox" />
+                android:text="@string/Gender2" />
 
             <CheckBox
                 android:id="@+id/Gen3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox" />
+                android:text="@string/Gender3" />
 
         </TableRow>
 
@@ -145,7 +147,7 @@
 
             <EditText
                 android:id="@+id/HeightA"
-                android:layout_width="58dp"
+                android:layout_width="97dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberDecimal" />
@@ -163,7 +165,7 @@
 
             <EditText
                 android:id="@+id/WeightA"
-                android:layout_width="56dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberDecimal" />
@@ -181,7 +183,7 @@
 
             <Spinner
                 android:id="@+id/levelSpinner"
-                android:layout_width="80dp"
+                android:layout_width="81dp"
                 android:layout_height="wrap_content" />
         </TableRow>
 
@@ -193,7 +195,9 @@
                 android:id="@+id/Base"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Base" />
+                android:text="@string/Base"
+                android:textColor="#020202"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow
@@ -204,11 +208,11 @@
                 android:id="@+id/HP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/HP" />
 
             <EditText
                 android:id="@+id/HPA"
-                android:layout_width="78dp"
+                android:layout_width="76dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
@@ -222,11 +226,11 @@
                 android:id="@+id/Attack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/Attack" />
 
             <EditText
                 android:id="@+id/AttackA"
-                android:layout_width="77dp"
+                android:layout_width="52dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
@@ -241,11 +245,11 @@
                 android:id="@+id/Defense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="@string/Defense" />
 
             <EditText
                 android:id="@+id/DefenseA"
-                android:layout_width="97dp"
+                android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
@@ -257,20 +261,20 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/Reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="@string/Reset" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/Store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="@string/Save" />
         </TableRow>
 
     </TableLayout>
