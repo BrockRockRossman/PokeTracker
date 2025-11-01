@@ -56,11 +56,14 @@ public class dataViewActivity extends AppCompatActivity {
         });
 
         Context context = this;
-        Cursor data = getContentResolver().query(uri, null, null, null, null, null);
-         String[] mListColumns = new String[] {
-                ContactsContract.Contacts.DISPLAY_NAME };
+
+        String[] mProjection = new String[] { MyContentProvider.COL_NAME, MyContentProvider.COL_NATNUM};
+
+        Cursor data = getContentResolver().query(uri, mProjection, null, null, null, null);
+        String[] mListColumns = new String[] { MyContentProvider.COL_NAME };
         int[] mListItems = new int[] { R.id.contact_name };
-        CursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.query1, data, mListColumns, mListItems);
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.query1, data, mListColumns, mListItems);
 
         databaseView.setAdapter(adapter);
     }

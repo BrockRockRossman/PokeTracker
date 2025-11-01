@@ -62,8 +62,9 @@ public class MyContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Implement this to handle requests to delete one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return mHelper.getWritableDatabase().
+                delete(TABLE_NAME, selection,
+                        selectionArgs);
     }
 
     @Override
@@ -88,6 +89,7 @@ public class MyContentProvider extends ContentProvider {
         String Defense = values.getAsString(COL_DEFENSE);
 
         long id = mHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
+
         return Uri.withAppendedPath(CONTENT_URI, "" + id);
     }
 
@@ -107,7 +109,8 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
-        // TODO: Implement this to handle requests to update one or more rows.
-        throw new UnsupportedOperationException("Not yet implemented");
+        return mHelper.getWritableDatabase().
+                update("Users", values, selection,
+                        selectionArgs);
     }
 }
