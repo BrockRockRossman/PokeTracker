@@ -5,7 +5,6 @@
     <string name="SubHeader">Register new catch</string>
 
 
-
     <string name="NatNum">National Number</string>
 
     <string name="Name">Name</string>
@@ -45,6 +44,7 @@
     <string name="attackD">0</string>
     <string name="defenseD">0</string>
 
+    <string name="returnB">return</string>
 
 
 

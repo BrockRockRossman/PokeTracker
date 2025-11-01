@@ -1,5 +1,9 @@
 package com.example.poketracker;
 
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox gen2;
     private CheckBox gen3;
 
+    private String genderA;
+
     private TextView height;
     private EditText heightA;
 
@@ -61,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
     private Button reset;
     private Button save;
 
+
+//-----------------------------------------------------------------------------
+
+
     View.OnClickListener resetListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -81,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         gen1.setChecked(false);
         gen2.setChecked(false);
         gen3.setChecked(false);
+        genderA = null;
+
 
 
 
@@ -92,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         hpA.setText("0");
         attackA.setText("0");
         defenseA.setText("0");
+
+
 
         // Set to normal color
         natNum.setTextColor(getResources().getColor(R.color.light_grey));
@@ -119,13 +133,49 @@ public class MainActivity extends AppCompatActivity {
         defenseA.setTextColor(getResources().getColor(R.color.black));
     }
 
+
+
+    //---------------------------------------------------------------------------------------------
+
+
     // Calls each of the checks and if one is false, will run toast that notifies error
     // if all pass, runs toast saying that info is stored
     View.OnClickListener saveListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            checkNatNum();
-            checkAttack();
+            String error = "There was an error with: ";
+            if(checkNatNum())
+            {
+                error += "National Number; ";
+            }
+            if(checkName())
+            {
+                error += "Name; ";
+            }
+            if(checkSpecies())
+            {
+                error += "Species; ";
+            }
+            if(checkHeight())
+            {
+                error += "Height; ";
+            }
+            if(checkWeight())
+            {
+                error += "Weight; ";
+            }
+            if(checkHP())
+            {
+                error += "HP; ";
+            }
+            if(checkAttack())
+            {
+                error += "Attack; ";
+            }
+            if(checkDefense())
+            {
+                error += "Defense; ";
+            }
             checkDefense();
             checkHeight();
             checkHP();
@@ -138,16 +188,46 @@ public class MainActivity extends AppCompatActivity {
                     !checkDefense() || !checkHeight() || !checkHP() ||
                     !checkWeight())
             {
-                Toast.makeText(MainActivity.this, "There was an error in your submission. Please try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
             }
             else {
                 // run success toast
                 Toast.makeText(MainActivity.this, "Pokemon registered!", Toast.LENGTH_SHORT).show();
+
+                ContentValues values = new ContentValues();
+                Uri uri = MyContentProvider.CONTENT_URI;
+
+                values.put(MyContentProvider.COL_NAME, nameA.getText().toString());
+                values.put(MyContentProvider.COL_NATNUM, natNumA.getText().toString());
+                values.put(MyContentProvider.COL_SPECIES, speciesA.getText().toString());
+                values.put(MyContentProvider.COL_GENDER, genderA);
+                values.put(MyContentProvider.COL_HEIGHT, heightA.getText().toString());
+                values.put(MyContentProvider.COL_WEIGHT, weightA.getText().toString());
+                values.put(MyContentProvider.COL_HP, hpA.getText().toString());
+                values.put(MyContentProvider.COL_ATTACK, attackA.getText().toString());
+                values.put(MyContentProvider.COL_DEFENSE, defenseA.getText().toString());
+
+
+
+                Uri newUri = getContentResolver().insert(uri, values);
+
+
                 reset();
+
+                Intent intent = new Intent(MainActivity.this, dataViewActivity.class);
+                startActivity(intent);
             }
 
         }
     };
+
+
+
+    // ----------------------------------------------------------------------------------------------
+
+
+
+
 
     // OnClickListener for checkBoxes, when one is check the others are not. uncheck one when new is selected
     View.OnClickListener gen1Listener = new View.OnClickListener() {
@@ -155,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             gen2.setChecked(false);
             gen3.setChecked(false);
+            genderA = "Male";
         }
     };
     View.OnClickListener gen2Listener = new View.OnClickListener() {
@@ -162,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             gen1.setChecked(false);
             gen3.setChecked(false);
+            genderA = "Female";
         }
     };
     View.OnClickListener gen3Listener = new View.OnClickListener() {
@@ -169,14 +251,23 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             gen2.setChecked(false);
             gen1.setChecked(false);
+            genderA = "Unkn";
         }
     };
+
+
+
+
+   // ----------------------------------------------------------------------------------------------
+    // On Create
+    // ----------------------------------------------------------------------------------------------
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.linear);
+        setContentView(R.layout.constraint);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -184,10 +275,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         for(int i = 1; i <= 50; i++)
         {
             levels.add("" + i);
         }
+
 
 
 
@@ -240,13 +333,14 @@ public class MainActivity extends AppCompatActivity {
        save.setOnClickListener(saveListener);
 
 
-
-
-
-
-
-
     }
+
+
+
+    // ----------------------------------------------------------------------------------------------
+
+
+
 
 
     // Series of if statements to check if each field is filled out properly, returns boolean

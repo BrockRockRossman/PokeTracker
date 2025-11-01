@@ -12,6 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeTracker">
         <activity
+            android:name=".dataViewActivity"
+            android:exported="false" />
+
+        <provider
+            android:name=".MyContentProvider"
+            android:authorities="com.example.poketracker.provider"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
