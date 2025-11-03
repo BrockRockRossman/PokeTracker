@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
+import android.util.Log;
 
 import java.net.URI;
 
@@ -15,6 +16,8 @@ public class MyContentProvider extends ContentProvider {
     private MainDatabaseHelper mHelper;
     public final static String DBNAME = "pokeDB";
     public final static String TABLE_NAME = "TaskTable";
+
+
 
     public static final String COL_NATNUM = "Natnum";
     public static final String COL_NAME = "Name";
@@ -29,6 +32,7 @@ public class MyContentProvider extends ContentProvider {
 
     private final static String SQL_CREATE_MAIN =
             "CREATE TABLE TaskTable (" +
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_NATNUM + " INTEGER, " +
                     COL_NAME + " TEXT, " +
                     COL_SPECIES + " TEXT, " +
@@ -50,6 +54,7 @@ public class MyContentProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(SQL_CREATE_MAIN);
+
         }
         @Override
         public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2){
@@ -102,7 +107,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        return mHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+        return mHelper.getReadableDatabase().query(TABLE_NAME, null, selection, selectionArgs, null, null, sortOrder);
     }
 
 
@@ -110,7 +115,7 @@ public class MyContentProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection,
                       String[] selectionArgs) {
         return mHelper.getWritableDatabase().
-                update("Users", values, selection,
+                update(TABLE_NAME, values, selection,
                         selectionArgs);
     }
 }

@@ -57,7 +57,7 @@ public class dataViewActivity extends AppCompatActivity {
 
         Context context = this;
 
-        String[] mProjection = new String[] { MyContentProvider.COL_NAME, MyContentProvider.COL_NATNUM};
+        String[] mProjection = new String[] {  MyContentProvider.COL_NAME, MyContentProvider.COL_NATNUM};
 
         Cursor data = getContentResolver().query(uri, mProjection, null, null, null, null);
         String[] mListColumns = new String[] { MyContentProvider.COL_NAME };
@@ -65,7 +65,7 @@ public class dataViewActivity extends AppCompatActivity {
 
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.query1, data, mListColumns, mListItems);
 
-        databaseView.setAdapter(adapter);
+        //databaseView.setAdapter(adapter);
     }
 
 
