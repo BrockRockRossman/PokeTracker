@@ -3,6 +3,7 @@ package com.example.poketracker;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -206,6 +207,15 @@ public class MainActivity extends AppCompatActivity {
                 values.put(MyContentProvider.COL_HP, hpA.getText().toString());
                 values.put(MyContentProvider.COL_ATTACK, attackA.getText().toString());
                 values.put(MyContentProvider.COL_DEFENSE, defenseA.getText().toString());
+
+                Cursor data = getContentResolver().query(uri, null, null, null, null, null);
+
+
+                if (data != null) {
+                    String[] columns = data.getColumnNames();
+                    for (String col : columns) {
+
+                    }
 
 
 

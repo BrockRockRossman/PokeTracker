@@ -67,6 +67,8 @@ public class dataViewActivity extends AppCompatActivity {
             for (String col : columns) {
                 android.util.Log.i("DB", "Column: " + col);
             }
+
+
             String[] mListColumns = new String[] { MyContentProvider.COL_NAME };
             int[] mListItems = new int[] { R.id.contact_name };
 
@@ -74,7 +76,7 @@ public class dataViewActivity extends AppCompatActivity {
                     this,
                     R.layout.query1,
                     data,
-                    mListColumns,
+                    mProjection,
                     mListItems);
 
             databaseView.setAdapter(adapter);
