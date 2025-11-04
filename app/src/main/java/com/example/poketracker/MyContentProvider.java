@@ -30,9 +30,11 @@ public class MyContentProvider extends ContentProvider {
     public static final String COL_ATTACK = "Attack";
     public static final String COL_DEFENSE = "Defense";
 
+    public static final String COL_ID = "_id";
+
     private final static String SQL_CREATE_MAIN =
             "CREATE TABLE TaskTable (" +
-                    "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                     " _id INTEGER PRIMARY KEY, " +
                     COL_NATNUM + " INTEGER, " +
                     COL_NAME + " TEXT, " +
                     COL_SPECIES + " TEXT, " +
@@ -49,16 +51,25 @@ public class MyContentProvider extends ContentProvider {
 
     protected final class MainDatabaseHelper extends SQLiteOpenHelper {
         MainDatabaseHelper(Context context) {
-            super(context, DBNAME, null, 1);
+            super(context, DBNAME, null, 4);
         }
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(SQL_CREATE_MAIN);
 
+            // Verify columns
+            Cursor cursor = db.rawQuery("PRAGMA table_info(" + TABLE_NAME + ")", null);
+            while (cursor.moveToNext()) {
+                String columnName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                Log.i("DB_SCHEMA", "Column: " + columnName);
+            }
+            cursor.close();
+
         }
         @Override
         public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2){
-
+            arg0.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            onCreate(arg0);
         }
     }
 
@@ -107,7 +118,7 @@ public class MyContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        return mHelper.getReadableDatabase().query(TABLE_NAME, null, selection, selectionArgs, null, null, sortOrder);
+        return mHelper.getReadableDatabase().query(TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
     }
 
 

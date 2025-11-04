@@ -47,25 +47,40 @@ public class dataViewActivity extends AppCompatActivity {
 
 
 
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+
+        databaseView = findViewById(R.id.dataViewLV);
         Context context = this;
 
-        String[] mProjection = new String[] {  MyContentProvider.COL_NAME, MyContentProvider.COL_NATNUM};
+        String[] mProjection = new String[] { MyContentProvider.COL_NAME, MyContentProvider.COL_NATNUM};
 
-        Cursor data = getContentResolver().query(uri, mProjection, null, null, null, null);
-        String[] mListColumns = new String[] { MyContentProvider.COL_NAME };
-        int[] mListItems = new int[] { R.id.contact_name };
+        Cursor data = getContentResolver().query(uri, null, null, null, null, null);
 
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.query1, data, mListColumns, mListItems);
 
-        //databaseView.setAdapter(adapter);
+        if (data != null) {
+            String[] columns = data.getColumnNames();
+            for (String col : columns) {
+                android.util.Log.i("DB", "Column: " + col);
+            }
+            String[] mListColumns = new String[] { MyContentProvider.COL_NAME };
+            int[] mListItems = new int[] { R.id.contact_name };
+
+            SimpleCursorAdapter adapter = new SimpleCursorAdapter(
+                    this,
+                    R.layout.query1,
+                    data,
+                    mListColumns,
+                    mListItems);
+
+            databaseView.setAdapter(adapter);
+        }
+
+
     }
 
 
