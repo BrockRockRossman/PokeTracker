@@ -192,8 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
             }
             else {
-                // run success toast
-                Toast.makeText(MainActivity.this, "Pokemon registered!", Toast.LENGTH_SHORT).show();
+
+
 
                 ContentValues values = new ContentValues();
                 Uri uri = MyContentProvider.CONTENT_URI;
@@ -209,23 +209,47 @@ public class MainActivity extends AppCompatActivity {
                 values.put(MyContentProvider.COL_DEFENSE, defenseA.getText().toString());
 
                 Cursor data = getContentResolver().query(uri, null, null, null, null, null);
+                boolean dupe = true;
+
+                if(data != null) {
+                    int count = data.getCount();
+                    int index = data.getColumnIndex("Name");
+                    Log.i("check index", index + "");
+                    data.moveToFirst();
 
 
-                if (data != null) {
-                    String[] columns = data.getColumnNames();
-                    for (String col : columns) {
 
+                    for(int i = 0; i < count; i++) {
+                        if (!data.getString(index).equals(nameA.getText().toString()))
+                        {
+                            data.moveToNext();
+                        }
+                        else {
+                            // return something false
+                            dupe = false;
+                            break;
+
+                        }
                     }
 
 
+                }
 
-                Uri newUri = getContentResolver().insert(uri, values);
 
 
-                reset();
+                if(dupe) {
+                    Uri newUri = getContentResolver().insert(uri, values);
 
-                Intent intent = new Intent(MainActivity.this, dataViewActivity.class);
-                startActivity(intent);
+
+                    reset();
+                    Toast.makeText(MainActivity.this, "Pokemon registered!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(MainActivity.this, dataViewActivity.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(MainActivity.this, "This pokemon has already been entered", Toast.LENGTH_SHORT).show();
+                }
             }
 
         }

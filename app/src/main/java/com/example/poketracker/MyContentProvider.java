@@ -51,7 +51,7 @@ public class MyContentProvider extends ContentProvider {
 
     protected final class MainDatabaseHelper extends SQLiteOpenHelper {
         MainDatabaseHelper(Context context) {
-            super(context, DBNAME, null, 4);
+            super(context, DBNAME, null, 5);
         }
         @Override
         public void onCreate(SQLiteDatabase db) {
